@@ -1,0 +1,13 @@
+services:
+  api-gateway:
+    build: .
+    container_name: api-gateway
+    ports:
+      - "8080:8080"
+
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://api-gateway:8080/actuator/info"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      start_period: 10s
